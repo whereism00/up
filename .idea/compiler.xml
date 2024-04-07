@@ -11,5 +11,9 @@
         <module name="MainModule" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="LruCacheSolver (1)" target="17" />
+      <module name="LruCacheSolver (2)" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

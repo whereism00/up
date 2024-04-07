@@ -1,7 +1,12 @@
+package org.example;
+
+import org.apache.log4j.Logger;
+
 public class Main {
+    private static final Logger log = Logger.getLogger(Main.class);
 
     /*
-    Реализовать фабрику (или фабричный метод), которая позволяет получить объекты LruCache
+    Реализовать фабрику (или фабричный метод), которая позволяет получить объекты org.example.LruCache
     с указанными типами параметризации. При этом возращаться должен экземпляр класса-прокси, который
     добавляет к обычному классу следующее поведение:
     • Каждый раз при достижении максимального размера кеша во время вызова метода set() удаляемый элемент
@@ -37,5 +42,7 @@ public class Main {
         System.out.println("Получение 25: " + lruCache.get(25));
         System.out.println("Получение 30: " + lruCache.get(30));
         System.out.println("Получение 3: " + lruCache.get(3));
+
+        log.info("The end");
     }
 }
