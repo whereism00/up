@@ -1,4 +1,6 @@
-package org.example;
+package org.example.impl;
+
+import org.example.LruCache;
 
 public class LruCacheImpl<K, V> implements LruCache<K, V> {
     private final Queue<V, K> queue;

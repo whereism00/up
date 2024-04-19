@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.impl.RingBufferImpl;
+
 public class LruCacheProxy<K, V> implements LruCache<K, V> {
     private final LruCache<K, V> lruCache;
     private final RingBuffer<K> ringBuffer;

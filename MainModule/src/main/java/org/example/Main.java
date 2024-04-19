@@ -1,6 +1,7 @@
 package org.example;
 
 import org.apache.log4j.Logger;
+import org.example.impl.LruCacheImpl;
 
 public class Main {
     private static final Logger log = Logger.getLogger(Main.class);
