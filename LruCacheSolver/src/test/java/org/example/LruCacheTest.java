@@ -3,7 +3,7 @@ package org.example;
 import org.example.impl.LruCacheImpl;
 import org.junit.jupiter.api.Test;
 
-public class MainTest {
+public class LruCacheTest {
     @Test
     public void whenAddElementOverTheLimit_expectRemovedEarliestElement() {
 
@@ -27,4 +27,5 @@ public class MainTest {
 
         assert lruCache.get(2) == 3;
     }
+
 }
