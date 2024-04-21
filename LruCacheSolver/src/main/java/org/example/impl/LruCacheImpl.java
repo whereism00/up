@@ -5,7 +5,7 @@ import org.example.LruCache;
 public class LruCacheImpl<K, V> implements LruCache<K, V> {
     private final Queue<V, K> queue;
     private int current;
-    private int limit;
+    private final int limit;
     private V tmp = null;
 
     public LruCacheImpl(int limit) {
@@ -85,7 +85,7 @@ class Node<V, K> {
     private V value;
     private int priority; //использование
     private K key;
-    Node next;
+    Node<V, K> next;
 
     public Node() {
         next = null;
@@ -110,7 +110,7 @@ class Node<V, K> {
         return priority;
     }
 
-    public Node getNext() {
+    public Node<V, K> getNext() {
         return next;
     }
 
@@ -126,7 +126,7 @@ class Node<V, K> {
         this.key = key;
     }
 
-    void setNext(Node next) {
+    void setNext(Node<V, K> next) {
         this.next = next;
     }
 }
@@ -230,12 +230,12 @@ class Queue<V, K> {
     }
 
     public String print() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         Node<V, K> tmp = start;
         while (tmp != null) {
-            res += "Ключ: " + tmp.getKey() + " Значение: " + tmp.getValue() + " Pr: " + tmp.getPriority() + "\n";
+            res.append("Ключ: ").append(tmp.getKey()).append(" Значение: ").append(tmp.getValue()).append(" Pr: ").append(tmp.getPriority()).append("\n");
             tmp = tmp.getNext();
         }
-        return res;
+        return res.toString();
     }
 }

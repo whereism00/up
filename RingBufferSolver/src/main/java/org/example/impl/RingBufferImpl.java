@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class RingBufferImpl<E> implements RingBuffer<E> {
     private static class Node<E> {
         E info;
-        Node next = null;
+        Node<E> next = null;
     }
 
     private Node<E> start, end;
@@ -44,7 +44,7 @@ public class RingBufferImpl<E> implements RingBuffer<E> {
                 end.next = start;
                 start = start.next;
             } else {
-                end.next = new Node<E>();
+                end.next = new Node<>();
             }
             end.next.info = item;
             end = end.next;
