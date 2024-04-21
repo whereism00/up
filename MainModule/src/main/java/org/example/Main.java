@@ -3,11 +3,12 @@
  */
 package org.example;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.impl.LruCacheImpl;
 
 public class Main {
-    private static final Logger log = Logger.getLogger(Main.class);
+    private static final Logger log = LogManager.getLogger(Main.class);
 
     /*
     Реализовать фабрику (или фабричный метод), которая позволяет получить объекты org.example.LruCache
@@ -27,6 +28,7 @@ public class Main {
         int lruCacheLimit = 2;
         LruCache<Integer, Integer> lruCache = new LruCacheProxy<>(new LruCacheImpl<>(lruCacheLimit));
         lruCache.set(1, 1);
+
         log.info("The end");
     }
 }
