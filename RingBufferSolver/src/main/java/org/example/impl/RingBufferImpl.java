@@ -19,7 +19,7 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
         /**
          * Next element.
          */
-        private Node next = null;
+        private Node<E> next = null;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
      */
     private final int size;
 
-    public RingBufferImpl(final int s) {
+    public RingBufferImpl(int s) {
         size = s;
         start = null;
         end = new Node<>();
