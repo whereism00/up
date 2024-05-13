@@ -37,6 +37,7 @@ pipeline {
                 branch 'feature/*'
             }
             steps {
+                junit testResults: '**/surefire-reports/*.xml'
                 jacoco(
                     minimumInstructionCoverage: '50'
                 )
