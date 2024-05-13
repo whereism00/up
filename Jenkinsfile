@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    environment {
+        M2_HOME = "\Users\marie\Downloads\apache-maven-3.9.6-src\apache-maven-3.9.6"
+        PATH = "${M2_HOME}/bin:${PATH}"
+    }
     
     stages {
         stage("Compile") {
