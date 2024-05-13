@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("Compile") {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
         stage("Tests") {
@@ -12,7 +12,7 @@ pipeline {
                 branch 'feature/*'
             }
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         stage("Static analyse") {
@@ -20,7 +20,7 @@ pipeline {
                 branch 'develop'
             }
             steps {
-                sh 'mvn checkstyle:check'
+                bat 'mvn checkstyle:check'
             }
         }
         stage("Report") {
@@ -35,12 +35,12 @@ pipeline {
         }
         stage("Install") {
             steps {
-                sh 'mvn install'
+                bat 'mvn install'
             }
         }
         stage("Publish") {
             steps {
-                sh 'copy "MainModule\\target\\MainModule-1.0-SNAPSHOT-jar-with-dependencies.jar" "C:\\Users\\marie\\Desktop\\MainModule-1.0.jar"'
+                bat 'copy "MainModule\\target\\MainModule-1.0-SNAPSHOT-jar-with-dependencies.jar" "C:\\Users\\marie\\Desktop\\MainModule-1.0.jar"'
             }
         }
     }
