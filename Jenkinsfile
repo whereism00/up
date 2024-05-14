@@ -15,6 +15,7 @@ pipeline {
 		steps {
 			checkout scmGit(branches: [[name: 'feature/4']],
 		userRemoteConfigs: [[url: 'https://github.com/whereism00/up.git']])
+		}
         }
         stage("Compile") {
             steps {
