@@ -1,3 +1,6 @@
+/**
+ * Package containing interfaces and classes for the main.
+ */
 package org.example;
 
 import org.apache.logging.log4j.LogManager;
