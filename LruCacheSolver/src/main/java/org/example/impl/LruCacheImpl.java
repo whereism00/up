@@ -1,60 +1,69 @@
-/**
- * Package containing implementation of the lru cache.
- */
 package org.example.impl;
 
 import org.example.LruCache;
 
+/**
+ * Implementation of the LRU Cache.
+ *
+ * @param <K> the type of keys maintained by this cache
+ * @param <V> the type of mapped values
+ */
 public class LruCacheImpl<K, V> implements LruCache<K, V> {
+    /**
+     * Lru cache.
+     */
     private final Queue<V, K> queue;
+    /** Current element. */
     private int current;
+    /** Maximum limit for the cache. */
     private final int limit;
+    /** Temporary element. */
     private V tmp = null;
 
-    public LruCacheImpl(int limit) {
+    /**
+     * Constructor to create an LRU cache with a given limit.
+     *
+     * @param limit the maximum number of items in the cache
+     */
+    public LruCacheImpl(final int limit) {
         queue = new Queue<>(limit);
         current = 0;
         this.limit = limit;
     }
 
     /**
-     * Возвращает значение, соответствующее указанному ключу.
-     * При этом элемент (пара ключ-значение) помечается
-     * как последний использованный.
+     * Retrieves an item from the cache.
      *
-     * @param key Ключ
-     * @return Значение или {@code null},
-     * если значение не найдено
+     * @param key the key of the item to retrieve
+     * @return the value associated with the key, or null if not found
      */
     @Override
-    public V get(K key) {
+    public V get(final K key) {
         current++;
-        Node<V, K> tmp = queue.SearchElem(key);
-        if (tmp == null) return null;
-        else return tmp.getValue();
+        Node<V, K> tmp = queue.searchElem(key);
+        if (tmp == null) {
+            return null;
+        } else {
+            return tmp.getValue();
+        }
     }
 
     /**
-     * Добавляет элемент (пару ключ-значение) в коллекцию.
-     * В случае, если элемент с таким ключом уже был
-     * в коллекции, он заменяется.
-     * При этом элемент помечается как последний использованный.
-     * <p>
-     * В случае, если до вставки размер коллекции был равен
-     * максимальному, из нее удаляется элемент,
-     * неиспользованный дольше всех.
+     * Adds an item to the cache.
      *
-     * @param key   Ключ
-     * @param value Значение
+     * @param key the key to store the item
+     * @param value the value to be stored
      */
     @Override
-    public void set(K key, V value) {
+    public void set(final K key, final V value) {
         tmp = queue.addElem(value, key, current);
         current++;
     }
 
     /**
-     * Возвращает текущий размер коллекции.
+     * Gets the size of the cache.
+     *
+     * @return the size
      */
     @Override
     public int getSize() {
@@ -62,7 +71,9 @@ public class LruCacheImpl<K, V> implements LruCache<K, V> {
     }
 
     /**
-     * Возвращает максимальный размер коллекции.
+     * Gets the limit of the cache.
+     *
+     * @return the limit
      */
     @Override
     public int getLimit() {
@@ -70,15 +81,17 @@ public class LruCacheImpl<K, V> implements LruCache<K, V> {
     }
 
     /**
-     * Возвращает удаляемое значение
+     * Gets the removable element of the cache.
+     *
+     * @return the removable element
      */
     public V getRemovable() {
         return tmp;
     }
 
     /**
-     * печать коллекции
-     **/
+     * Prints the cache.
+     */
     public String print() {
         return queue.print();
     }
@@ -169,7 +182,7 @@ class Queue<V, K> {
                 tmp = tmp.getNext();
             }
             if (count == limit) {
-                result = DeleteLowPriority();
+                result = deleteLowPriority();
             }
             tmp.setNext(new Node<>(value, key, priority));
         }
@@ -191,7 +204,7 @@ class Queue<V, K> {
         return tmp;
     }
 
-    public V DeleteLowPriority() {
+    public V deleteLowPriority() {
         Node<V, K> tmp = getLowPriority();
         if (start == tmp) {
             start = start.getNext();
@@ -220,7 +233,7 @@ class Queue<V, K> {
         return tmp.getPriority();
     }
 
-    public Node<V, K> SearchElem(K key) {
+    public Node<V, K> searchElem(K key) {
         Node<V, K> tmp = start;
         while (tmp != null) {
             if (tmp.getKey().equals(key)) {
