@@ -1,6 +1,3 @@
-/**
- * Package containing implementation of the ring buffer.
- */
 package org.example.impl;
 
 import org.example.RingBuffer;
@@ -9,6 +6,8 @@ import java.util.Iterator;
 
 /**
  * Implementation of the RingBuffer.
+ *
+ * @param <E> the type of elements held in this buffer
  */
 public final class RingBufferImpl<E> implements RingBuffer<E> {
     private static class Node<E> {
@@ -35,7 +34,12 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
      */
     private final int size;
 
-    public RingBufferImpl(int s) {
+    /**
+     * Constructor.
+     *
+     * @param s the size
+     */
+    public RingBufferImpl(final int s) {
         size = s;
         start = null;
         end = new Node<>();

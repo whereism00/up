@@ -1,35 +1,31 @@
-/**
- * Package containing interfaces and classes for the ring buffer.
- */
 package org.example;
 
 public interface RingBuffer<T> extends Iterable<T> {
     /**
-     * Возвращает и удаляет элемент из начала очереди.
+     * Polls an element from the ring buffer.
      *
-     * @return Элемент или {@code null}, если очередь пуста
+     * @return the polled element
      */
     T poll();
 
     /**
-     * Возвращает (но не удаляет) элемент из начала очереди.
+     * Peeks an element from the ring buffer.
      *
-     * @return Элемент или {@code null}, если очередь пуста
+     * @return the peeked element
      */
     T peek();
 
     /**
-     * Добавляет элемент в конец очереди.
-     * Затирает начало очереди в случае, если она заполнена.
+     * Adds an item to the ring buffer.
      *
-     * @param item новый элемент
+     * @param item the item to be added
      */
     void add(T item);
 
     /**
-     * Возвращает размер коллекции.
+     * Gets the size of the ring buffer.
      *
-     * @return размер
+     * @return the size of the ring buffer
      */
     int getSize();
 
