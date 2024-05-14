@@ -1,24 +1,51 @@
+/**
+ * Package containing implementation of the ring buffer.
+ */
 package org.example.impl;
 
 import org.example.RingBuffer;
 
 import java.util.Iterator;
 
-public class RingBufferImpl<E> implements RingBuffer<E> {
+/**
+ * Implementation of the RingBuffer.
+ */
+public final class RingBufferImpl<E> implements RingBuffer<E> {
     private static class Node<E> {
-        E info;
-        Node next = null;
+        /**
+         * Some info.
+         */
+        private E info;
+        /**
+         * Next element.
+         */
+        private Node next = null;
     }
 
-    private Node<E> start, end;
+    /**
+     * Start element.
+     */
+    private Node<E> start;
+    /**
+     * End element.
+     */
+    private Node<E> end;
+    /**
+     * Size.
+     */
     private final int size;
 
-    public RingBufferImpl(int s) {
+    public RingBufferImpl(final int s) {
         size = s;
         start = null;
         end = new Node<>();
     }
 
+    /**
+     * Polls an element from the ring buffer.
+     *
+     * @return the polled element
+     */
     public E poll() {
         if (getSize() == 0) {
             return null;
@@ -28,6 +55,11 @@ public class RingBufferImpl<E> implements RingBuffer<E> {
         return result.info;
     }
 
+    /**
+     * Peeks an element from the ring buffer.
+     *
+     * @return the peeked element
+     */
     public E peek() {
         if (getSize() == 0) {
             return null;
@@ -35,7 +67,12 @@ public class RingBufferImpl<E> implements RingBuffer<E> {
         return start.info;
     }
 
-    public void add(E item) {
+    /**
+     * Adds an item to the ring buffer.
+     *
+     * @param item the item to be added
+     */
+    public void add(final E item) {
         if (start == null) {
             end.info = item;
             start = end;
@@ -51,6 +88,11 @@ public class RingBufferImpl<E> implements RingBuffer<E> {
         }
     }
 
+    /**
+     * Gets the size of the ring buffer.
+     *
+     * @return the size of the ring buffer
+     */
     public int getSize() {
         if (start == null) {
             return 0;
@@ -62,6 +104,11 @@ public class RingBufferImpl<E> implements RingBuffer<E> {
         return count + 1;
     }
 
+    /**
+     * Returns an iterator over elements of the ring buffer.
+     *
+     * @return an iterator
+     */
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
