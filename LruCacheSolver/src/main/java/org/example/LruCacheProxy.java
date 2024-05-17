@@ -43,7 +43,7 @@ public class LruCacheProxy<K, V> implements LruCache<K, V> {
         outputKeyHistory();
         V value = lruCache.get(key);
         long endTime = System.nanoTime();
-        System.out.printf("Время обработки операции: %d\n",
+        System.out.printf("Время обработки: %d\n",
                 endTime - startTime);
         return value;
     }
@@ -53,7 +53,7 @@ public class LruCacheProxy<K, V> implements LruCache<K, V> {
      *
      */
     private void outputKeyHistory() {
-        System.out.println("\n--------- 10 последних ключей ---------");
+        System.out.println("\n--------- 10 последних ключей");
         for (K key : ringBuffer) {
             System.out.println(key.toString());
         }
@@ -74,7 +74,8 @@ public class LruCacheProxy<K, V> implements LruCache<K, V> {
         ringBuffer.add(key);
         V removableItem = lruCache.getRemovable();
         if (removableItem != null) {
-            System.out.printf("Удаляемый элемент: %s\n", removableItem);
+            System.out.printf("Удаляемый элемент: %s\n",
+                    removableItem);
         }
 
         long endTime = System.nanoTime();
