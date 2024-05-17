@@ -1,3 +1,6 @@
+/**
+ * Package containing implementation of the lru cache.
+ */
 package org.example.impl;
 
 import org.example.LruCache;
