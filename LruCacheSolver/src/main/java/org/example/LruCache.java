@@ -1,6 +1,3 @@
-/**
- * Package containing interfaces and classes for the lru cache.
- */
 package org.example;
 
 /**
@@ -50,5 +47,10 @@ public interface LruCache<K, V> {
      */
     int getLimit();
 
+    /**
+     * Gets the removable element of the cache.
+     *
+     * @return the removable element
+     */
     V getRemovable();
 }
