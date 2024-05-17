@@ -79,7 +79,7 @@ public class LruCacheProxy<K, V> implements LruCache<K, V> {
         }
 
         long endTime = System.nanoTime();
-        System.out.printf("Время обработки операции: %d\n",
+        System.out.printf("Время обработки: %d\n",
                 endTime - startTime);
     }
 
