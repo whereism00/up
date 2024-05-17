@@ -11,12 +11,6 @@ pipeline {
     }
     
     stages {
-        stage("Checkout") {
-		steps {
-			checkout scmGit(branches: [[name: 'feature/4']],
-		userRemoteConfigs: [[url: 'https://github.com/whereism00/up.git']])
-		}
-        }
         stage("Compile") {
             steps {
                 bat 'mvn clean compile'

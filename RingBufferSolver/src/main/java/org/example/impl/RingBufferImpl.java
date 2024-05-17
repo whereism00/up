@@ -9,6 +9,8 @@ import java.util.Iterator;
 
 /**
  * Implementation of the RingBuffer.
+ *
+ * @param <E> the type of elements held in this buffer
  */
 public final class RingBufferImpl<E> implements RingBuffer<E> {
     private static class Node<E> {
@@ -19,7 +21,7 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
         /**
          * Next element.
          */
-        private Node next = null;
+        private Node<E> next = null;
     }
 
     /**
@@ -35,6 +37,11 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
      */
     private final int size;
 
+    /**
+     * Constructor.
+     *
+     * @param s the size
+     */
     public RingBufferImpl(final int s) {
         size = s;
         start = null;
@@ -81,7 +88,7 @@ public final class RingBufferImpl<E> implements RingBuffer<E> {
                 end.next = start;
                 start = start.next;
             } else {
-                end.next = new Node<E>();
+                end.next = new Node<>();
             }
             end.next.info = item;
             end = end.next;

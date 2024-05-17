@@ -11,44 +11,39 @@ package org.example;
  */
 public interface LruCache<K, V> {
     /**
-     * Возвращает значение, соответствующее указанному ключу.
-     * При этом элемент (пара ключ-значение) помечается
-     * как последний использованный.
+     * Retrieves an item from the cache.
      *
-     * @param key Ключ
-     * @return Значение или {@code null},
-     * если значение не найдено
+     * @param key the key of the item to retrieve
+     * @return the value associated with the key, or null if not found
      */
     V get(K key);
 
     /**
-     * Добавляет элемент (пару ключ-значение) в коллекцию.
-     * В случае, если элемент с таким ключом уже был
-     * в коллекции, он заменяется.
-     * При этом элемент помечается как последний использованный.
-     * <p>
-     * В случае, если до вставки размер коллекции был равен
-     * максимальному, из нее удаляется элемент,
-     * неиспользованный дольше всех.
+     * Adds an item to the cache.
      *
-     * @param key   Ключ
-     * @param value Значение
+     * @param key the key to store the item
+     * @param value the value to be stored
      */
     void set(K key, V value);
 
     /**
-     * Возвращает текущий размер коллекции.
+     * Gets the size of the cache.
      *
-     * @return Текущий размер
+     * @return the size
      */
     int getSize();
 
     /**
-     * Возвращает максимальный размер коллекции.
+     * Gets the limit of the cache.
      *
-     * @return Максимальный размер
+     * @return the limit
      */
     int getLimit();
 
+    /**
+     * Gets the removable element of the cache.
+     *
+     * @return the removable element
+     */
     V getRemovable();
 }
