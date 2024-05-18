@@ -27,4 +27,14 @@ public class MainTest {
 
         assert lruCache.get(2) == 3;
     }
+
+    @Test
+    public void whenAddElement_expectReplacedElement() {
+        int lruCacheLimit = 2;
+        LruCache<Integer, Integer> lruCache = new LruCacheProxy<>(new LruCacheImpl<>(lruCacheLimit));
+        lruCache.set(1, 1);
+        lruCache.set(1, 2);
+
+        assert lruCache.get(1) == 2;
+    }
 }
